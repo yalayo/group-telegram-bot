@@ -112,6 +112,34 @@
                             </execution>
                         </executions>
                     </plugin>
+                    <!-- copy sam.yaml to target to use it later in codepipeline -->
+                    <plugin>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <executions>
+                            <execution>
+                                <id>copy-resources</id>
+                                <!-- here the phase you need -->
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${basedir}/target</outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <directory>${basedir}/</directory>
+                                            <includes>
+                                                <include>sam.yaml</include>
+                                            </includes>
+                                            <filtering>false</filtering>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- build the .zip to be published as a lambda -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-assembly-plugin</artifactId>
