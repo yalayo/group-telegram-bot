@@ -11,7 +11,20 @@ Resources:
     Properties:
       Handler: com.busqandote.StreamLambdaHandler::handleRequest
       Runtime: java8
-      CodeUri: "s3://busqandote2-telegram/busqandote-telegram-1.0-SNAPSHOT-lambda-package.zip"
+      CodeUri: target/busqandote-telegram-1.0-SNAPSHOT-lambda-package.zip
       MemorySize: 512
       Policies: AWSLambdaBasicExecutionRole
       Timeout: 30
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: any
+
+Outputs:
+  BusqandoteTelegramApi:
+    Description: URL for application
+    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/ping'
+    Export:
+      Name: BusqandoteTelegramApi
