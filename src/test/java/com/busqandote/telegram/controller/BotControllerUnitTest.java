@@ -1,5 +1,6 @@
 package com.busqandote.telegram.controller;
 
+import com.busqandote.telegram.BotController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
