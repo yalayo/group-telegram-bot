@@ -6,6 +6,7 @@ import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +14,7 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -33,13 +35,12 @@ public class BotControllerUnitTest {
         String message = "Test message";
 
         HttpClient httpClient = mock(HttpClient.class);
-        HttpHost httpHost = mock(HttpHost.class);
-        HttpRequest httpRequest = mock(HttpRequest.class);
+        HttpPost httpPost = mock(HttpPost.class);
         HttpResponse httpResponse = mock(HttpResponse.class);
         StatusLine statusLine = mock(StatusLine.class);
 
         try {
-            when(httpClient.execute(httpHost, httpRequest)).thenReturn(httpResponse);
+            when(httpClient.execute(any())).thenReturn(httpResponse);
         } catch (IOException e) {
             e.printStackTrace();
         }
