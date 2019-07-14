@@ -5,6 +5,7 @@ import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +18,9 @@ import java.io.IOException;
 public class BotController {
     private HttpClient httpClient;
 
-    public BotController() {}
+    public BotController() {
+        httpClient = HttpClientBuilder.create().build();
+    }
 
     @PostMapping("/message")
     public boolean send(@RequestParam("message")String message, @RequestParam("user")String user) {
@@ -32,7 +35,7 @@ public class BotController {
         HttpPost httpPost = new HttpPost(url);
 
         String json = "{chat_id:" + user + ","
-        + "text: " + message + ","
+        + "text: " + message
                 + "}";
 
         try {
