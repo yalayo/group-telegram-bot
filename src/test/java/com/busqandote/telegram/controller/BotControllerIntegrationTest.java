@@ -2,6 +2,7 @@ package com.busqandote.telegram.controller;
 
 import com.busqandote.telegram.BotController;
 import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,8 +25,7 @@ public class BotControllerIntegrationTest {
     @Autowired
     private MockMvc mvc;
 
-    @MockBean
-    private HttpClient httpClient;
+    private HttpClient httpClient = HttpClientBuilder.create().build();
 
     @Test
     @DisplayName("If the message to be send is empty then return false")
