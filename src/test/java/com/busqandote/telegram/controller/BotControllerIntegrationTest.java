@@ -1,18 +1,13 @@
 package com.busqandote.telegram.controller;
 
 import com.busqandote.telegram.BotController;
-import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -25,13 +20,9 @@ public class BotControllerIntegrationTest {
     @Autowired
     private MockMvc mvc;
 
-    private HttpClient httpClient = HttpClientBuilder.create().build();
-
     @Test
     @DisplayName("If the message to be send is empty then return false")
     public void testMessageToSendEmpty() throws Exception {
-
-
         mvc.perform(post("/message")
                 .param("message", "")
                 .param("user", "user")
