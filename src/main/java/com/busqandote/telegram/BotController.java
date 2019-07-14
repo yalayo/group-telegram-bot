@@ -6,6 +6,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.json.JSONObject;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,18 +29,18 @@ public class BotController {
             return false;
 
         String base = "https://api.telegram.org/bot";
-        String token = "";
-        String method = "";
+        String token = "853657759:AAHGMUKfPBbBJzPobZ5rUFXL1j-yGQd6jbo";
+        String method = "sendMessage";
 
-        String url = base + token + method;
+        String url = base + token + "/" + method;
         HttpPost httpPost = new HttpPost(url);
 
-        String json = "{chat_id:" + user + ","
-        + "text: " + message
-                + "}";
+        JSONObject jo = new JSONObject();
+        jo.put("chat_id", user);
+        jo.put("text", message);
 
         try {
-            StringEntity entity = new StringEntity(json);
+            StringEntity entity = new StringEntity(jo.toString());
             httpPost.setEntity(entity);
             httpPost.setHeader("Accept", "application/json");
             httpPost.setHeader("Content-type", "application/json");
