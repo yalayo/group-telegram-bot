@@ -5,15 +5,22 @@ import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.io.IOException;
 
+@RestController
+@EnableWebMvc
 public class BotController {
     private HttpClient httpClient;
 
     public BotController() {}
 
-    public boolean send(String message, String user) {
+    @PostMapping("/message")
+    public boolean send(@RequestParam("message")String message, @RequestParam("user")String user) {
         if(message.isEmpty())
             return false;
 
