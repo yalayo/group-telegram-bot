@@ -38,5 +38,8 @@ public class BotControllerIntegrationTest {
                 .param("user", "user")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
+
+                //.param("message", "Busqandote bot")
+                //.param("user", "-1001463900608")
     }
 }
