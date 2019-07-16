@@ -4,6 +4,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.json.JSONObject;
@@ -40,7 +41,7 @@ public class BotController {
         jo.put("text", message);
 
         try {
-            StringEntity entity = new StringEntity(jo.toString());
+            StringEntity entity = new StringEntity(jo.toString(), ContentType.APPLICATION_JSON);
             httpPost.setEntity(entity);
             httpPost.setHeader("Accept", "application/json");
             httpPost.setHeader("Content-type", "application/json");
