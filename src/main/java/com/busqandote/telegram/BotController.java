@@ -30,7 +30,7 @@ public class BotController {
             return false;
 
         String base = "https://api.telegram.org/bot";
-        String token = "853657759:AAHGMUKfPBbBJzPobZ5rUFXL1j-yGQd6jbo";
+        String token = "";
         String method = "sendMessage";
 
         String url = base + token + "/" + method;
